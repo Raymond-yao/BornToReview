@@ -1,5 +1,36 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<svg width="960" height="600"></svg>
-<script src="/js/bundle.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>BornToReview</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+  </head>
+  <body>
+      <script>
+        function submitRepo() {
+          var repoOwner = document.getElementById("repo-owner").value;
+          var repoName = document.getElementById("repo-name").value;
+          window.location.href = "/insight?owner=" + repoOwner + "&name=" + repoName;
+          return false;
+        }
+      </script>
+    <div id="container">
+      <div id="the-middle">
+        <div id="app-title-container">
+          BornToReview
+        </div>
+        <div id="the-form">
+            <form>
+              <div class="form-group">
+                  <label for="repo-input" class="repo-input-font">GitHub Information</label>
+                <input class="form-control repo-input repo-input-font" id="repo-owner" aria-describedby="repo-owner" placeholder="Repository Owner">
+                <input class="form-control repo-input repo-input-font" id="repo-name" placeholder="Repository Name">
+                <small id="instruction" class="form-text text-muted">Fill in the GitHub repository information to get an insight!</small>
+              </div>
+              <button type="button" class="btn btn-primary search-button" onclick="submitRepo()">Search</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,11 +1,25 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 let app = express();
 
 app.use(express.static('public'));
 app.get('/', (req, res) => {
-    // temporary hack
-    res.redirect(200, "/index.html");
+    res.sendFile(path.join(__dirname + '/../public/index.html'));
+});
+
+app.get('/insight', (req, res) => {
+    var appHtml = fs.readFile(
+        path.join(__dirname + '/../public/app.html'),
+        {encoding: 'UTF-8'},
+        (err, data) => {
+            // a hack here to achieve an easy template engine.
+            let finalHtml = data
+                .replace("$repoName", req.query.name)
+                .replace("$repoOwner", req.query.owner);
+            res.send(finalHtml);
+        }
+    )
 });
 
 app.get('/data/:repo', (req, res) => {

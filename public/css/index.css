@@ -1,0 +1,74 @@
+
+
+html, body {
+    height: 100%;
+    background-color: #f9f9f9;
+}
+
+#container {
+    height: 100%;
+}
+
+#the-middle {
+    width: 25%;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control.repo-input {
+    border-radius: 0;
+}
+
+.form-control.repo-input:focus {
+    box-shadow: 0 0 0 0 #ffffff;
+}
+
+.repo-input-font {
+    font-family: Comic Sans MS;
+}
+
+#repo-owner {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+#repo-name {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+#app-title-container {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 56px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#the-form {
+    background-color: #ffffff;
+    margin-top: 40px;
+    padding: 20px 20px 30px 20px;
+    border-radius: 5px;
+    border-top: 1px solid #d8dee2;
+    border-left: 0.5px solid #d8dee2;
+    border-right: 0.5px solid #d8dee2;
+    border-bottom: 0.5px solid #d8dee2;
+}
+
+.search-button {
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 40px;
+    background-image: linear-gradient(-180deg,#34d058,#28a745 90%);
+    border-color: #28a745;
+}
+
+.search-button:hover {
+    background-image: linear-gradient(-180deg,#34d058,#3faf19 90%);
+    -webkit-transition: 0.5s;
+}
