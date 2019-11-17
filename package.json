@@ -1,0 +1,18 @@
+{
+  "name": "born_to_review",
+  "version": "0.0.1",
+  "description": "A visulization project to render the pull requests review relations in a project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js",
+    "build-client": "browserify ./client/index.js -o ./public/js/bundle.js"
+  },
+  "author": "_ (:3_| L) _",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.5.0",
+    "d3": "^5.13.1",
+    "express": "^4.17.1"
+  }
+}
