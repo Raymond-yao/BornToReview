@@ -64,7 +64,7 @@ github.prototype.retrivePRReview = (repoOwner, repoName, prNumber, reviewId) => 
  * @param repoName {string} repo name
  * @param prNumber {number} number indicating a PR
  * @param reviewId {numbber} review id
- * @returns https://developer.github.com/v3/pulls/reviews/#get-a-single-review
+ * @returns https://developer.github.com/v3/pulls/reviews/#get-comments-for-a-single-review
  */
 github.prototype.listPRReviewComments = (repoOwner, repoName, prNumber, reviewId) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}/reviews/${reviewId}/comments`);
