@@ -1,6 +1,30 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<svg width="960" height="600"></svg>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+    <ul id="app-nav" class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+
+      <div id="canvas">
+        <svg></svg>
+      </div>
+</body>
 <script>
     var repoName = "$repoName";
     var repoOwner = "$repoOwner";
