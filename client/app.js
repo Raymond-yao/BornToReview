@@ -1,31 +1,41 @@
 const d3 = require("d3");
 const axios = require('axios');
 const sizeHelper = require('./size.js');
+const util = require('./util.js');
 
 axios.get('/data/someRepo')
     .then(res => drawGraph(res.data));
 
 function drawGraph(data) {
     var svg = d3.select("svg");
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
-    var width = 960;
-    var height = 600;
+    var width = window.innerWidth * 0.9;
+    var height = width / 2;
+    svg.style("width", width).style("height", height);
 
-    var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    var simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).distance(200).id((d) => { return d.name; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    var eachUser = svg.append("g")
+    var eachEdge = svg
+        .append("g")
+        .attr("class", "edges")
+        .selectAll("line")
+        .data(data.links)
+        .enter()
+        .append("line")
+        .attr("stroke-width", sizeHelper.resizeEdge);
+
+    var eachUser = svg
+        .append("g")
         .attr("class", "nodes")
         .selectAll("g")
         .data(data.nodes)
-        .enter().append("g");
-
-    eachUser.append("circle")
-        .attr("r", sizeHelper.resizeCircle)
-        .attr("fill", d => color(Math.random() * 10))
-        .call(d3.drag()
+        .enter()
+        .append("g")
+        .attr("id", (d) => "user_" + d.name)
+        .call(d3
+            .drag()
             .on("drag", (d) => {
                 d.fx = d3.event.x;
                 d.fy = d3.event.y;
@@ -42,18 +52,21 @@ function drawGraph(data) {
             })
         );
 
-    eachUser.append("text")
-        .text(d => {return d.name;})
-        .attr("dy", ".2em")
-        .attr("font-size", sizeHelper.resizeText)
-        .style("text-anchor", "middle");
-
+    eachUser.append("circle")
+        .attr("r", sizeHelper.resizeCircle)
+        .attr("fill", util.generateColor);
+    
+    util.buildText(eachUser);
 
     simulation
         .nodes(data.nodes)
         .on("tick", () => {
-        eachUser
-            .attr("transform", function(d) {
+            eachEdge.attr("x1", (d) => { return d.source.x; })
+                .attr("y1", (d) => { return d.source.y; })
+                .attr("x2", (d) => { return d.target.x; })
+                .attr("y2", (d) => { return d.target.y; });
+
+            eachUser.attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
             })
         });

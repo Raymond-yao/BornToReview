@@ -33,11 +33,11 @@ app.get('/data/:repo', (req, res) => {
             {"name": "billy", "PR reviews": 215, "PR approves": 233},
             {"name": "elisa", "PR reviews": 115, "PR approves": 133}
         ],
-        linkes: [
-            {"src": "raymond", "dest": "will"},
-            {"src": "raymond", "dest": "elisa"},
-            {"src": "raymond", "dest": "adam"},
-            {"src": "billy", "dest": "adam"}
+        links: [
+            {"source": "raymond", "target": "will"},
+            {"source": "raymond", "target": "elisa"},
+            {"source": "raymond", "target": "adam"},
+            {"source": "billy", "target": "adam"}
         ]
     };
 
