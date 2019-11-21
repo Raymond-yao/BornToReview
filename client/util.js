@@ -50,18 +50,51 @@ function buildTooltip(d, userToolTip) {
         userToolTip.transition()		
         .duration(200)		
         .style("opacity", 1);		
-        userToolTip.html(pendingTooltip())	
-            .style("left", (d3.event.pageX + 10) + "px")		
-            .style("top", (d3.event.pageY - 28) + "px");
+        userToolTip.html(pendingTooltip())
+        adjustPendingTooltip(userToolTip);
+
+        // use closure to memorize the coordinates of mouse over event
+        // as after axios's promise gets resolved the coordinates are lost.
+        let corX = d3.event.pageX;
+        let corY = d3.event.pageY;
             
         axios.get('/user/' + d.name)
             .then(userData => {
                 userToolTip[d.name] = userData;
+                adjustRealTooltipPos(userToolTip, corX, corY);
                 userToolTip.html(tooltipBuilder(userData));
             })
             .catch(err => {
                 userToolTip.html(defaultTooltip());
             })
+    }
+}
+
+function adjustPendingTooltip(userToolTip) {
+    if (d3.event.pageX + 300 < window.innerWidth) {
+        userToolTip.style("left", (d3.event.pageX + 10) + "px");
+    } else {
+        userToolTip.style("left", (window.innerWidth - 300) + "px");
+    }
+
+    if (d3.event.pageY - 28 + 200 < window.innerHeight) {
+        userToolTip.style("top", (d3.event.pageY - 28) + "px");
+    } else {
+        userToolTip.style("top", (window.innerHeight - 202) + "px");
+    }
+}
+
+function adjustRealTooltipPos(userToolTip, x, y) {
+    if (x + 300 < window.innerWidth) {
+        userToolTip.style("left", (x + 10) + "px");
+    } else {
+        userToolTip.style("left", (window.innerWidth - 300) + "px");
+    }
+
+    if (y - 28 + 500 < window.innerHeight) {
+        userToolTip.style("top", (y - 28) + "px");
+    } else {
+        userToolTip.style("top", (window.innerHeight - 514 ) + "px");
     }
 }
 
