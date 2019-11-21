@@ -6,6 +6,19 @@ const util = require('./util.js');
 axios.get('/data/someRepo')
     .then(res => drawGraph(res.data));
 
+function toggleFilterBoard() {
+    let board = document.querySelector("#filter-board");
+    board.style.opacity = board.style.opacity == "0" ? "1" : "0";
+    board.style.visibility = board.style.visibility == "hidden" ? "visible" : "hidden";
+}
+
+function updateTopVal() {
+    document.querySelector("#top-user-val").textContent = document.querySelector("#top-user-range").value;
+}
+
+document.querySelector(".filter-button").addEventListener("click", toggleFilterBoard);
+document.querySelector("#top-user-range").addEventListener("input", updateTopVal);
+
 function drawGraph(data) {
     var svg = d3.select("svg");
     var width = window.innerWidth * 0.9;

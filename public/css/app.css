@@ -91,3 +91,54 @@ div.user-tooltip {
     color: #326ba8;
     font-weight: 500;
 }
+
+#filter-board {
+    position: absolute;
+    bottom: 120px;
+    width: 500px;
+    right: 25px;
+    padding: 30px 20px 30px 20px;
+    background-color: white;
+    border-radius: 15px;
+    border: solid;
+    border-width: 1px 0.5px 0.5px 0.5px;
+    border-color: #d8dee2;
+    transition-property: opacity visibility;
+    transition-duration: 1s;
+}
+
+#top-user-val {
+    font-weight: 600;
+    font-size: 24px;
+    color: #326ba8;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.range-label {
+    font-weight: 500;
+    padding: 5px;   
+}
+
+#top-user-range {
+    cursor: pointer;
+}
+
+.render-button {
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    background-color: #326ba8;
+    border-color: #326ba8;
+}
+
+.render-button:hover {
+    background-color: #34d058;
+    border-color: #34d058;
+    transition-property: background border;
+    transition-duration: 0.5s;
+}
