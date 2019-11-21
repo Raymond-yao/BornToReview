@@ -70,5 +70,6 @@ html, body {
 
 .search-button:hover {
     background-image: linear-gradient(-180deg,#34d058,#3faf19 90%);
+    transition: 0.5s;
     -webkit-transition: 0.5s;
 }
