@@ -18,3 +18,50 @@
     stroke: #999;
     stroke-opacity: 0.6;
 }
+
+.nodex text {
+    cursor: default;
+}
+
+.nodes text.user-name-text {
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: Comic Sans MS;
+    fill: aliceblue;
+}
+
+div.user-tooltip {	
+    position: absolute;			
+    pointer-events: none;			
+}
+
+.spinning-container {
+    margin: 40px auto 40px auto;
+}
+
+.spinning {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.info-container {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.info-title {
+    font-family: Fantasy;
+    font-size: 16px;
+    color: #326ba8;
+    font-weight: 500;
+}

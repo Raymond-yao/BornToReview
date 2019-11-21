@@ -28,22 +28,28 @@ app.get('/insight', (req, res) => {
     );
 });
 
+app.get('/user/:username', (req, res) => {
+    github.getUser(req.params.username).then(data => {
+        res.send(data);
+    });
+});
+
 app.get('/data/:repo', (req, res) => {
     let mock_data = {
         nodes: [
-            { "name": "raymond", "PR reviews": 150, "PR approves": 323 },
-            { "name": "will", "PR reviews": 100, "PR approves": 13 },
-            { "name": "user 1", "PR reviews": 25, "PR approves": 30 },
-            { "name": "user 2", "PR reviews": 65, "PR approves": 23 },
-            { "name": "adam", "PR reviews": 75, "PR approves": 31 },
-            { "name": "billy", "PR reviews": 215, "PR approves": 233 },
-            { "name": "elisa", "PR reviews": 115, "PR approves": 133 }
+            { "name": "Raymond-yao", "PR reviews": 150, "PR approves": 323 },
+            { "name": "WillCZhang", "PR reviews": 100, "PR approves": 13 },
+            { "name": "vczh", "PR reviews": 25, "PR approves": 30 },
+            { "name": "azusa0127", "PR reviews": 65, "PR approves": 23 },
+            { "name": "micromoon1997", "PR reviews": 75, "PR approves": 31 },
+            { "name": "y396920969", "PR reviews": 215, "PR approves": 233 },
+            { "name": "Leoaqr", "PR reviews": 115, "PR approves": 133 }
         ],
         links: [
-            {"source": "raymond", "target": "will"},
-            {"source": "raymond", "target": "elisa"},
-            {"source": "raymond", "target": "adam"},
-            {"source": "billy", "target": "adam"}
+            {"source": "Raymond-yao", "target": "WillCZhang"},
+            {"source": "Raymond-yao", "target": "Leoaqr"},
+            {"source": "Raymond-yao", "target": "micromoon1997"},
+            {"source": "y396920969", "target": "micromoon1997"}
         ]
     };
 

@@ -17,6 +17,10 @@ function drawGraph(data) {
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
+    var userToolTip = d3.select("body").append("div")	
+        .attr("class", "user-tooltip")				
+        .style("opacity", 0);
+
     var eachEdge = svg
         .append("g")
         .attr("class", "edges")
@@ -56,7 +60,7 @@ function drawGraph(data) {
         .attr("r", sizeHelper.resizeCircle)
         .attr("fill", util.generateColor);
     
-    util.buildText(eachUser);
+    util.buildText(eachUser, userToolTip);
 
     simulation
         .nodes(data.nodes)

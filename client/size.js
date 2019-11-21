@@ -18,7 +18,7 @@ function resizeEdge(data) {
 }
 
 function resizeText(data) {
-    let fontSize = data["PR reviews"] / 8;
+    let fontSize = data["PR reviews"] / 9;
     if (fontSize < 11) fontSize = 11;
 
     return fontSize;
