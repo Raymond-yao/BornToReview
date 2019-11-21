@@ -46,10 +46,10 @@ app.get('/data/:repo', (req, res) => {
             { "name": "Leoaqr", "PR reviews": 115, "PR approves": 133 }
         ],
         links: [
-            {"source": "Raymond-yao", "target": "WillCZhang"},
-            {"source": "Raymond-yao", "target": "Leoaqr"},
-            {"source": "Raymond-yao", "target": "micromoon1997"},
-            {"source": "y396920969", "target": "micromoon1997"}
+            {"source": "Raymond-yao", "target": "WillCZhang", "approves": 33, "request_changes": 100},
+            {"source": "Raymond-yao", "target": "Leoaqr", "approves": 133, "request_changes": 2},
+            {"source": "Raymond-yao", "target": "micromoon1997", "approves": 5, "request_changes": 300},
+            {"source": "y396920969", "target": "micromoon1997", "approves": 50, "request_changes": 30}
         ]
     };
 

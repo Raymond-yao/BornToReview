@@ -30,8 +30,8 @@ html body {
 }
 
 .edges line {
-    stroke: #3498db;
     stroke-opacity: 1;
+    cursor: pointer;
 }
 
 .filter-button {

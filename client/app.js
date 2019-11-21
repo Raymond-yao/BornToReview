@@ -20,30 +20,48 @@ document.querySelector(".filter-button").addEventListener("click", toggleFilterB
 document.querySelector("#top-user-range").addEventListener("input", updateTopVal);
 
 function drawGraph(data) {
-    var svg = d3.select("svg");
-    var width = window.innerWidth * 0.9;
-    var height = window.innerHeight - 60;
+    let svg = d3.select("svg");
+    let width = window.innerWidth * 0.9;
+    let height = window.innerHeight - 60;
     svg.style("width", width).style("height", height);
 
-    var simulation = d3.forceSimulation(data.nodes)
+    let simulation = d3.forceSimulation(data.nodes)
         .force("link", d3.forceLink(data.links).distance(200).id((d) => { return d.name; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    var userToolTip = d3.select("body").append("div")	
+    let userToolTip = d3.select("body").append("div")	
         .attr("class", "user-tooltip")				
         .style("opacity", 0);
 
-    var eachEdge = svg
+    let edges = svg
         .append("g")
         .attr("class", "edges")
         .selectAll("line")
         .data(data.links)
         .enter()
         .append("line")
-        .attr("stroke-width", sizeHelper.resizeEdge);
+        .attr("showing", "ap")
+        .attr("stroke", "#34d058")
+        .attr("stroke-width", sizeHelper.resizeEdge)
+        .on("click", d => {
+            let color = {
+                "ap": "#34d058",
+                "re": "red"
+            }
+            let dataAttr = {
+                "ap": "approves",
+                "re": "request_changes"
+            }
+            let e = d3.event.target;
+            e.setAttribute("showing", e.getAttribute("showing") === "ap" ? "re" : "ap");
+            let currentColor = e.getAttribute("showing");
+            e.setAttribute("stroke", color[currentColor]);
+            e.setAttribute("stroke-width", sizeHelper.edgeSizeHelper(d[dataAttr[currentColor]]));
+        });
+    
 
-    var eachUser = svg
+    let eachUser = svg
         .append("g")
         .attr("class", "nodes")
         .selectAll("g")
@@ -78,7 +96,7 @@ function drawGraph(data) {
     simulation
         .nodes(data.nodes)
         .on("tick", () => {
-            eachEdge.attr("x1", (d) => { return d.source.x; })
+            edges.attr("x1", (d) => { return d.source.x; })
                 .attr("y1", (d) => { return d.source.y; })
                 .attr("x2", (d) => { return d.target.x; })
                 .attr("y2", (d) => { return d.target.y; });

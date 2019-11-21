@@ -10,7 +10,11 @@ function resizeCircle(data) {
 }
 
 function resizeEdge(data) {
-    let thickness = data.source["PR approves"] / 20;
+    return edgeSizeHelper(data.approves);
+}
+
+function edgeSizeHelper(value) {
+    let thickness = value / 20;
     if (thickness > 18) thickness = 18;
     else if (thickness < 1) thickness = 1;
 
@@ -27,5 +31,6 @@ function resizeText(data) {
 module.exports = {
     resizeCircle: resizeCircle,
     resizeEdge: resizeEdge,
+    edgeSizeHelper: edgeSizeHelper,
     resizeText: resizeText
 }
