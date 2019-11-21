@@ -60,7 +60,7 @@ function buildTooltip(d, userToolTip) {
             
         axios.get('/user/' + d.name)
             .then(userData => {
-                userToolTip[d.name] = userData;
+                tooltipData[d.name] = userData;
                 adjustRealTooltipPos(userToolTip, corX, corY);
                 userToolTip.html(tooltipBuilder(userData));
             })
