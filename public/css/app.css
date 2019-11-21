@@ -1,4 +1,8 @@
 
+html body {
+    background-color: azure;
+}
+
 #canvas svg {
     display: block;
     margin: auto;
@@ -9,14 +13,36 @@
     height: 60px;
 }
 
+.nav-title {
+    font-size: 36px;
+    color: #3498db;
+    margin-left: 3px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.nav-title:hover {
+    text-decoration: none;
+}
+
 .nav-link {
     height: 60px;
     line-height: 40px;
 }
 
 .edges line {
-    stroke: #999;
-    stroke-opacity: 0.6;
+    stroke: #3498db;
+    stroke-opacity: 1;
+}
+
+.filter-button {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 100px;
+    height: 65px;
+    font-size: 28px;
+    border-radius: 25px;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
 }
 
 .nodex text {

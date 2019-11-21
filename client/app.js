@@ -9,7 +9,7 @@ axios.get('/data/someRepo')
 function drawGraph(data) {
     var svg = d3.select("svg");
     var width = window.innerWidth * 0.9;
-    var height = width / 2;
+    var height = window.innerHeight - 60;
     svg.style("width", width).style("height", height);
 
     var simulation = d3.forceSimulation(data.nodes)
