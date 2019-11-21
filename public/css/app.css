@@ -104,7 +104,7 @@ div.user-tooltip {
     border-width: 1px 0.5px 0.5px 0.5px;
     border-color: #d8dee2;
     transition-property: opacity visibility;
-    transition-duration: 1s;
+    transition-duration: 0.4s;
 }
 
 #top-user-val {
