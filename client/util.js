@@ -74,7 +74,7 @@ function adjustPendingTooltip(userToolTip) {
     if (d3.event.pageX + 300 < window.innerWidth) {
         userToolTip.style("left", (d3.event.pageX + 10) + "px");
     } else {
-        userToolTip.style("right", (d3.event.pageX - 10) + "px");
+        userToolTip.style("left", (window.innerWidth - 300) + "px");
     }
 
     if (d3.event.pageY - 28 + 200 < window.innerHeight) {
@@ -88,7 +88,7 @@ function adjustRealTooltipPos(userToolTip, x, y) {
     if (x + 300 < window.innerWidth) {
         userToolTip.style("left", (x + 10) + "px");
     } else {
-        userToolTip.style("right", (x - 10) + "px");
+        userToolTip.style("left", (window.innerWidth - 300) + "px");
     }
 
     if (y - 28 + 500 < window.innerHeight) {
