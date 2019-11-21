@@ -16,7 +16,32 @@
         <svg></svg>
       </div>
 
-      <button type="button" class="btn btn-primary filter-button" onclick="submitRepo()">Filter</button>
+      <div id="filter-board" style="visibility: hidden; opacity: 0;">
+        <form>
+          <div class="form-group">
+              <label class="range-label">Repository Owner</label>
+              <input class="form-control" id="repo-owner" placeholder="E.g. Raymond-yao">
+          </div>
+          <div class="form-group">
+            <label class="range-label">Repository Name</label>
+            <input  class="form-control" id="repo-name" placeholder="E.g. FastWebDsl">
+          </div>
+          <div class="form-group">
+            <label class="range-label">Rendering TOP</label>
+            <span id="top-user-val">10</span>
+            <label class="range-label"> Users with most PR comments </label>
+            <input type="range" class="form-control-range" min="10" max="100" step="1" value="1" id="top-user-range">
+          </div>
+          <label class="range-label">Including Files:</label> 
+          <select class="form-control">
+            <option>run.py</option>
+            <option>interpreter.py</option>
+            <option>parser.py</option>
+          </select>
+        </form>
+        <button type="button" class="btn btn-primary render-button" id="rerender">Render</button>
+      </div>
+      <button type="button" class="btn btn-primary filter-button">Opt.</button>
 </body>
 <script>
     var repoName = "$repoName";
