@@ -7,16 +7,17 @@ const logger = require('tracer').console();
  */
 github.prototype.getUser = (username) => {
     return get(`/users/${username}`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
  * @param repoName {string} repo name
+ * @param state {string} Either open, closed, or all to filter by state. Default: open
  * @returns https://developer.github.com/v3/pulls/#list-pull-requests
  */
 github.prototype.listPRs = (repoOwner, repoName) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -24,9 +25,9 @@ github.prototype.listPRs = (repoOwner, repoName) => {
  * @param prNumber {number} number indicating a PR
  * @returns https://developer.github.com/v3/pulls/#get-a-single-pull-request
  */
-github.prototype.retrivePR = (repoOwner, repoName, prNumber) => {
+github.prototype.retrievePR = (repoOwner, repoName, prNumber) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -36,7 +37,7 @@ github.prototype.retrivePR = (repoOwner, repoName, prNumber) => {
  */
 github.prototype.listPRRequestedReviewer = (repoOwner, repoName, prNumber) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}/requested_reviewers`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -46,18 +47,18 @@ github.prototype.listPRRequestedReviewer = (repoOwner, repoName, prNumber) => {
  */
 github.prototype.listPRReviews = (repoOwner, repoName, prNumber) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}/reviews`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
  * @param repoName {string} repo name
  * @param prNumber {number} number indicating a PR
- * @param reviewId {numbber} review id
+ * @param reviewId {number} review id
  * @returns https://developer.github.com/v3/pulls/reviews/#get-a-single-review
  */
 github.prototype.retrivePRReview = (repoOwner, repoName, prNumber, reviewId) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}/reviews/${reviewId}`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -68,7 +69,7 @@ github.prototype.retrivePRReview = (repoOwner, repoName, prNumber, reviewId) => 
  */
 github.prototype.listPRReviewComments = (repoOwner, repoName, prNumber, reviewId) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/${prNumber}/reviews/${reviewId}/comments`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -77,7 +78,7 @@ github.prototype.listPRReviewComments = (repoOwner, repoName, prNumber, reviewId
  */
 github.prototype.listPRComments = (repoOwner, repoName) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/comments`);
-}
+};
 
 /**
  * @param repoOwner {string} repo owners
@@ -87,16 +88,17 @@ github.prototype.listPRComments = (repoOwner, repoName) => {
  */
 github.prototype.listPRComments = (repoOwner, repoName, commentId) => {
     return get(`/repos/${repoOwner}/${repoName}/pulls/comments/${commentId}`);
-}
+};
 
 
 // Helpers
 let githubRequest = null;
+
 function github() {
     githubRequest = axios.create({
         baseURL: "https://api.github.com",
         timeout: 5000,
-        headers: { Accept: "application/vnd.github.v3.full+json" }
+        headers: {Accept: "application/vnd.github.v3.full+json"}
     });
 }
 

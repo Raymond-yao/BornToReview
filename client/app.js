@@ -8,8 +8,8 @@ axios.get('/data/someRepo')
 
 function toggleFilterBoard() {
     let board = document.querySelector("#filter-board");
-    board.style.opacity = board.style.opacity == "0" ? "1" : "0";
-    board.style.visibility = board.style.visibility == "hidden" ? "visible" : "hidden";
+    board.style.opacity = board.style.opacity === "0" ? "1" : "0";
+    board.style.visibility = board.style.visibility === "hidden" ? "visible" : "hidden";
 }
 
 function updateTopVal() {
@@ -30,8 +30,8 @@ function drawGraph(data) {
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    let userToolTip = d3.select("body").append("div")	
-        .attr("class", "user-tooltip")				
+    let userToolTip = d3.select("body").append("div")
+        .attr("class", "user-tooltip")
         .style("opacity", 0);
 
     let edges = svg
@@ -50,11 +50,11 @@ function drawGraph(data) {
             let color = {
                 "ap": "#34d058",
                 "re": "red"
-            }
+            };
             let dataAttr = {
                 "ap": "approves",
                 "re": "request_changes"
-            }
+            };
             let e = d3.event.target;
             e.setAttribute("showing", e.getAttribute("showing") === "ap" ? "re" : "ap");
             let currentColor = e.getAttribute("showing");
@@ -125,7 +125,7 @@ function drawGraph(data) {
         eachUser.style("opacity", 1);
         edges.style("opacity", 1);
     });
-    
+
     util.buildText(eachUser, userToolTip);
 
     simulation

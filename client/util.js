@@ -15,9 +15,9 @@ function buildText(allUsers, userToolTip) {
             .text(d =>prefixes[i] + d[attrs[i]])
             .attr("dy",  initialOffset + i + "em")
             .attr("font-size", sizeHelper.resizeText)
-            .style("text-anchor", "middle")
-            
-            if (i == 0) {
+            .style("text-anchor", "middle");
+
+            if (i === 0) {
                 // add mouse over to username only
                 text
                     .attr("font-family", "")
@@ -31,33 +31,33 @@ function buildText(allUsers, userToolTip) {
                     .on("mouseover", (d) => {
                         buildTooltip(d, userToolTip);
                     })
-                    .on("mouseout", (d) => {		
-                        userToolTip.transition()		
-                            .duration(500)		
-                            .style("opacity", 0);	
+                    .on("mouseout", (d) => {
+                        userToolTip.transition()
+                            .duration(500)
+                            .style("opacity", 0);
                     });
             }
-    }    
+    }
 }
 
 function buildTooltip(d, userToolTip) {
     if (tooltipData[d.name]) {
-        userToolTip.transition()		
-            .duration(200)		
+        userToolTip.transition()
+            .duration(200)
             .style("opacity", 1);
         userToolTip.html(tooltipBuilder(tooltipData[d.name]));
     } else {
-        userToolTip.transition()		
-        .duration(200)		
-        .style("opacity", 1);		
-        userToolTip.html(pendingTooltip())
+        userToolTip.transition()
+        .duration(200)
+        .style("opacity", 1);
+        userToolTip.html(pendingTooltip());
         adjustPendingTooltip(userToolTip);
 
         // use closure to memorize the coordinates of mouse over event
         // as after axios's promise gets resolved the coordinates are lost.
         let corX = d3.event.pageX;
         let corY = d3.event.pageY;
-            
+
         axios.get('/user/' + d.name)
             .then(userData => {
                 tooltipData[d.name] = userData;
@@ -133,8 +133,8 @@ function tooltipBuilder(userData) {
             .replace("$user-name", getOrElse(userData.data.name, userData.data.login))
             .replace("$email", getOrNone(userData.data.email))
             .replace("$bio", getOrNone(userData.data.bio))
-            .replace("$location", getOrNone(userData.data.location))
-    
+            .replace("$location", getOrNone(userData.data.location));
+
     return finalTooltip;
 }
 
@@ -144,11 +144,11 @@ function generateColor() {
         let timeSeed = new Date().getSeconds();
         colorArr.push((timeSeed * 31 + (17 * Math.random() * 100 )) % 0xff);
     }
-    
-    return "rgb("+ colorArr[0] + "," + colorArr[1] + "," + colorArr[2] + ")"; 
+
+    return "rgb("+ colorArr[0] + "," + colorArr[1] + "," + colorArr[2] + ")";
 }
 
 module.exports = {
    buildText: buildText,
    generateColor: generateColor
-}
+};
