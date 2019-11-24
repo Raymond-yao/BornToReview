@@ -41,6 +41,8 @@ function drawGraph(data) {
         .data(data.links)
         .enter()
         .append("line")
+        .attr("source", (d) => d.source["name"])
+        .attr("target", (d) => d.target["name"])
         .attr("showing", "ap")
         .attr("stroke", "#34d058")
         .attr("stroke-width", sizeHelper.resizeEdge)
@@ -59,7 +61,6 @@ function drawGraph(data) {
             e.setAttribute("stroke", color[currentColor]);
             e.setAttribute("stroke-width", sizeHelper.edgeSizeHelper(d[dataAttr[currentColor]]));
         });
-    
 
     let eachUser = svg
         .append("g")
@@ -89,7 +90,41 @@ function drawGraph(data) {
 
     eachUser.append("circle")
         .attr("r", sizeHelper.resizeCircle)
-        .attr("fill", util.generateColor);
+        .attr("fill", util.generateColor)
+        .on("click", (d) => {
+            d3.event.stopPropagation();
+            const relatedReviewerNames = [];
+            relatedReviewerNames.push(d["name"]);
+            edges.each((e) => {
+                const source = e.source["name"];
+                const target = e.target["name"];
+                const selection = svg.select(`line[source=${source}][target=${target}]`);
+                if (source === d["name"] || target === d["name"]) {
+                    if (!relatedReviewerNames.includes(source)) {
+                        relatedReviewerNames.push(source);
+                    }
+                    if (!relatedReviewerNames.includes(target)) {
+                        relatedReviewerNames.push(target);
+                    }
+                    selection.style("opacity", 1);
+                } else {
+                    selection.style("opacity", 0.3);
+                }
+            });
+            svg.selectAll("g")
+                .filter((d) => {
+                    return d && d.name !== undefined;
+                })
+                .each((d) => {
+                    svg.select(`g[id=user_${d["name"]}]`)
+                        .style("opacity", relatedReviewerNames.includes(d["name"]) ? 1 : 0.3);
+                });
+        });
+
+    svg.on('click', () => {
+        eachUser.style("opacity", 1);
+        edges.style("opacity", 1);
+    });
     
     util.buildText(eachUser, userToolTip);
 
