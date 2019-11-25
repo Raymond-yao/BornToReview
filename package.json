@@ -11,9 +11,11 @@
   "author": "_ (:3_| L) _",
   "license": "MIT",
   "dependencies": {
+    "@octokit/rest": "^16.35.0",
     "axios": "^0.19.0",
     "browserify": "^16.5.0",
     "d3": "^5.13.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "tracer": "^1.0.1"
   }
