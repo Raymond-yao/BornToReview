@@ -3,7 +3,8 @@ const axios = require('axios');
 const sizeHelper = require('./size.js');
 const util = require('./util.js');
 
-axios.get('/data/someRepo')
+let urlParams = new URLSearchParams(window.location.search);
+axios.get(`/data/${urlParams.get('owner')}/${urlParams.get('name')}`)
     .then(res => drawGraph(res.data));
 
 function toggleFilterBoard() {
@@ -26,7 +27,9 @@ function drawGraph(data) {
     svg.style("width", width).style("height", height);
 
     let simulation = d3.forceSimulation(data.nodes)
-        .force("link", d3.forceLink(data.links).distance(200).id((d) => { return d.name; }))
+        .force("link", d3.forceLink(data.links).distance(200).id((d) => {
+            return d.name;
+        }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -52,7 +55,7 @@ function drawGraph(data) {
                 "re": "red"
             };
             let dataAttr = {
-                "ap": "approves",
+                "ap": "approvals",
                 "re": "request_changes"
             };
             let e = d3.event.target;
@@ -131,12 +134,20 @@ function drawGraph(data) {
     simulation
         .nodes(data.nodes)
         .on("tick", () => {
-            edges.attr("x1", (d) => { return d.source.x; })
-                .attr("y1", (d) => { return d.source.y; })
-                .attr("x2", (d) => { return d.target.x; })
-                .attr("y2", (d) => { return d.target.y; });
+            edges.attr("x1", (d) => {
+                return d.source.x;
+            })
+                .attr("y1", (d) => {
+                    return d.source.y;
+                })
+                .attr("x2", (d) => {
+                    return d.target.x;
+                })
+                .attr("y2", (d) => {
+                    return d.target.y;
+                });
 
-            eachUser.attr("transform", function(d) {
+            eachUser.attr("transform", function (d) {
                 return "translate(" + d.x + "," + d.y + ")";
             })
         });

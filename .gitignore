@@ -3,3 +3,4 @@ package-lock.json
 public/js/
 .vscode
 .idea
+.env

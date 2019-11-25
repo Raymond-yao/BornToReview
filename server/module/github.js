@@ -13,10 +13,12 @@ github.prototype.getUser = (username) => {
  * @param repoOwner {string} repo owners
  * @param repoName {string} repo name
  * @param state {string} Either open, closed, or all to filter by state. Default: open
+ * @param page
+ * @param numPerPage
  * @returns https://developer.github.com/v3/pulls/#list-pull-requests
  */
-github.prototype.listPRs = (repoOwner, repoName) => {
-    return get(`/repos/${repoOwner}/${repoName}/pulls`);
+github.prototype.listPRs = (repoOwner, repoName, state='open', page=1, numPerPage=30) => {
+    return get(`/repos/${repoOwner}/${repoName}/pulls?state=${state}&page=${page}&per_page=${numPerPage}`);
 };
 
 /**

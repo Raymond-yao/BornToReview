@@ -6,8 +6,8 @@ const axios = require('axios');
 let tooltipData = {};
 
 function buildText(allUsers, userToolTip) {
-    let prefixes = ["@", "Reviews: ", "Approves: "];
-    let attrs = ["name", "PR reviews", "PR approves"];
+    let prefixes = ["@", "Comments: ", "Approvals: "];
+    let attrs = ["name", "PR comments", "PR approvals"];
     let initialOffset = -1;
     for (let i = 0; i < 3; i ++) {
         let text = allUsers
