@@ -1,8 +1,8 @@
 function resizeCircle(data) {
-    let radius = data["PR comments"] / 10;
-    if (radius < 37) {
+    let radius = data["PR comments"] / 5;
+    if (radius < 20) {
         // a too small circle will affect the readability of word...
-        radius = 37;
+        radius = 20;
     }
     return radius;
 }
@@ -20,8 +20,8 @@ function edgeSizeHelper(value) {
 }
 
 function resizeText(data) {
-    let fontSize = data["PR comments"] / 50;
-    if (fontSize < 11) fontSize = 11;
+    let fontSize = data["PR comments"] / 25;
+    if (fontSize < 6) fontSize = 6;
 
     return fontSize;
 }

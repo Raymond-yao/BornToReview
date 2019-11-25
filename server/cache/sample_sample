@@ -1,0 +1,17 @@
+{
+        "nodes": [
+            { "name": "Raymond-yao", "PR comments": 150, "PR approvals": 323 },
+            { "name": "WillCZhang", "PR comments": 100, "PR approvals": 13 },
+            { "name": "vczh", "PR comments": 25, "PR approvals": 30 },
+            { "name": "azusa0127", "PR comments": 65, "PR approvals": 23 },
+            { "name": "micromoon1997", "PR comments": 75, "PR approvals": 31 },
+            { "name": "y396920969", "PR comments": 215, "PR approvals": 233 },
+            { "name": "Leoaqr", "PR comments": 115, "PR approvals": 133 }
+        ],
+        "links": [
+            {"source": "Raymond-yao", "target": "WillCZhang", "approves": 33, "request_changes": 100},
+            {"source": "Raymond-yao", "target": "Leoaqr", "approves": 133, "request_changes": 2},
+            {"source": "Raymond-yao", "target": "micromoon1997", "approves": 5, "request_changes": 300},
+            {"source": "y396920969", "target": "micromoon1997", "approves": 50, "request_changes": 30}
+        ]
+    }

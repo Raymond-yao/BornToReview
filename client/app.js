@@ -101,7 +101,7 @@ function drawGraph(data) {
             edges.each((e) => {
                 const source = e.source["name"];
                 const target = e.target["name"];
-                const selection = svg.select(`line[source=${source}][target=${target}]`);
+                const selection = svg.select(`line[source="${source}"][target="${target}"]`);
                 if (source === d["name"] || target === d["name"]) {
                     if (!relatedReviewerNames.includes(source)) {
                         relatedReviewerNames.push(source);
@@ -111,7 +111,7 @@ function drawGraph(data) {
                     }
                     selection.style("opacity", 1);
                 } else {
-                    selection.style("opacity", 0.3);
+                    selection.style("opacity", 0.1);
                 }
             });
             svg.selectAll("g")
@@ -120,7 +120,7 @@ function drawGraph(data) {
                 })
                 .each((d) => {
                     svg.select(`g[id=user_${d["name"]}]`)
-                        .style("opacity", relatedReviewerNames.includes(d["name"]) ? 1 : 0.3);
+                        .style("opacity", relatedReviewerNames.includes(d["name"]) ? 1 : 0.1);
                 });
         });
 
