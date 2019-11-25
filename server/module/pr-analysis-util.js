@@ -1,9 +1,17 @@
 const Octokit = require("@octokit/rest");
+const fs = require('fs');
+
 const octokit = Octokit({
     auth: process.env.GITHUB_AUTH_TOKEN
 });
-console.log(process.env.GITHUB_AUTH_TOKEN);
+const cachePath = `${__dirname}/../cache`;
+
 async function getPRData(owner, repo) {
+    const cachedFile = `${cachePath}/${owner}_${repo}`;
+    if (fs.existsSync(cachedFile)) {
+        return JSON.parse(fs.readFileSync(cachedFile, 'utf8'));
+    }
+
     let data = {
         nodes: [],
         links: []
@@ -55,6 +63,7 @@ async function getPRData(owner, repo) {
             }
         }
     }
+    fs.writeFileSync(`${cachePath}/${owner}_${repo}`, JSON.stringify(data));
     return data;
 }
 
